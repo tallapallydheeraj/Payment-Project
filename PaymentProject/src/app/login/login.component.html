@@ -1,0 +1,28 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="col-md-4 offset-md-4">
+      <div *ngIf="apiResult.error" class="alert alert-danger mt-3" role="alert">
+        We are unable to process your request. Please try later.
+      </div>
+      <div class="form-group">
+        <label for="username" class="form-label mt-4">UserName</label>
+        <input type="text" class="form-control" id="username" name="username" aria-describedby="userNameHelp"
+          placeholder="Enter CustomerID" [(ngModel)]="user.username" formControlName="username" autocomplete="off">
+      </div>
+      <!-- <div *ngIf="!username?.valid  && username?.dirty" class="text-danger">
+        <div *ngIf="username.errors?.required">UserName is required</div>
+      </div> -->
+      <div class="form-group">
+        <label for="password" class="form-label mt-4">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password"
+          [(ngModel)]="user.password" formControlName="password" autocomplete="off">
+        <!-- <div *ngIf="!password?.valid && password?.dirty " class="text-danger mt-2">
+          <div *ngIf="password.errors?.required">Password is required</div>
+        </div> -->
+      </div>
+  
+  
+      <div class="form-label mt-4">
+        <button class="btn btn-primary" type="submit">Login</button>
+      </div>
+    </div>
+  </form>

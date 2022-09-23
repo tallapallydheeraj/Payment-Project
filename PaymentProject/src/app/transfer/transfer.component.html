@@ -1,0 +1,93 @@
+<form>
+    
+    <div class="col-md-4 offset-md-4">
+        
+        <div class="form-group">
+            <label for="customerid" class="form-label mt-4">Customer ID</label>
+            <input type="text" class="form-control" id="customerid" name="customerid" aria-describedby="customerid"
+                 [value]="transaction.customer.customerid" readonly>
+        </div>
+        <div class="form-group">
+            <label for="senderbankname" class="form-label mt-4">Sender bank name</label>
+            <input type="text" class="form-control" id="senderbankname" name="senderbankname" aria-describedby="receiverid"
+             [value]="transaction.senderBIC.bankname" readonly>
+        </div>
+        <div class="form-group">
+            <label for="senderbic" class="form-label mt-4">SenderBIC</label>
+            <input type="text" class="form-control" id="senderbic" name="senderbic" aria-describedby="senderbic"
+                 [value]="transaction.senderBIC.bic" readonly>
+        </div>
+        <div class="form-group">
+            <label for="receiverid" class="form-label mt-4">Receiver ID</label>
+            <input type="text" class="form-control" id="receiverid" name="receiverid" aria-describedby="receiverid"
+                placeholder="Enter receiverid" [(ngModel)]="transaction.receiveraccountholdernumber" (keyup)="fetch()">
+        </div>
+        <div *ngIf="!flag" class="text-danger mt-2">
+            <div>receiverid is not valid</div>
+         </div>
+         <div *ngIf="transfertosameaccount" class="text-danger mt-2">
+            <div>You cannot transfer to your own account</div>
+         </div>
+         <div *ngIf="!sametype" class="text-danger mt-2">
+            <div>Receiver should also be {{customertype=='B'?'Bank':'Customer'}}</div>
+         </div>
+        <div class="form-group">
+            <label for="receivername" class="form-label mt-4">Receivername</label>
+            <input type="text" class="form-control" id="receivername" name="receivername" aria-describedby="receiverid"
+            placeholder="Enter Receivername" [(ngModel)]="transaction.receiveraccountholdername" ><!--[value]="transaction.receiveraccountholdername" >-->
+        </div>
+        <div class="form-group">
+            <label for="receiverbic" class="form-label mt-4">RecieverBIC</label>
+            <input type="text" class="form-control" id="receiverbic" name="receiverbic" aria-describedby="receiverbic"
+                 [value]="transaction.receiverBIC.bic" readonly>
+        </div>
+        <div class="form-group">
+            <label for="receiverbankname" class="form-label mt-4">Receiverbankname</label>
+            <input type="text" class="form-control" id="receiverbankname" name="receiverbankname" aria-describedby="receiverid"
+             [value]="transaction.receiverBIC.bankname" readonly>
+        </div>
+         <div  class="form-group">
+            <label for="transfertype" class="form-label mt-4">Transfertype</label>
+            <input *ngIf="customertype=='B'" type="text" class="form-control" id="transfertype" name="transfertype" aria-describedby="receiverid"
+             value="Bank to Bank transfer" readonly>
+             <input *ngIf="customertype=='I'" type="text" class="form-control" id="transfertype" name="transfertype" aria-describedby="receiverid"
+             value="Customer transfer" readonly>
+             
+        </div>
+    
+         
+        <div class="form-group">
+            <label for="messagetype" 
+            class="form-label mt-4">Message Type</label>
+                <select 
+                id="messagetype" 
+                name="messagetype"   
+                [(ngModel)]="transaction.message.messagecode"      
+                class="form-select">
+                   
+                    <option 
+                    *ngFor="let m of messagetypes" 
+                    
+                    [value]="m.code" 
+                    >{{m.name}}
+                    </option>
+                </select>
+        </div>
+        <div class="form-group">
+            <label for="currencyamount" class="form-label mt-4">Amount</label>
+            <input type="number" class="form-control" id="currencyamount" name="currencyamount" aria-describedby="currencyamount"
+                placeholder="Enter Amount" [(ngModel)]="transaction.inramount" >
+        </div>
+        <div class="form-group">
+            <label for="transferfees" class="form-label mt-4">TransferFees</label>
+            <input type="number" class="form-control" id="transferfees" name="transferfees" aria-describedby="currencyamount"
+                 [value]="transaction.inramount*0.0025"  readonly>
+        </div>
+ 
+    
+       
+         <div class="form-group mt-4">
+            <button [disabled]="!sametype || !flag || transfertosameaccount" type="button" (click)="transfer()" class="btn btn-primary">Transfer</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,23 @@
+<ul class="navbar-nav me-auto">
+    <li class="nav-item">
+        <a class="nav-link" routerLink='home' routerLinkActive="active">Home
+            <!--<span class="visually-hidden">(current)</span>-->
+        </a>
+    </li>
+    <li class="nav-item" *ngIf="!loggedIn()">
+        <a class="nav-link" routerLink="login" routerLinkActive="active">Login</a>
+    </li>
+    <li class="nav-item" *ngIf="loggedIn()">
+        <a class="nav-link" routerLink="dashboard" routerLinkActive="active">Dashboard</a>
+    </li>
+    <li class="nav-item" *ngIf="loggedIn()">
+        <a class="nav-link" routerLink="transfer" routerLinkActive="active">Transfer</a>
+    </li>
+    <li class="nav-item" *ngIf="loggedIn()">
+        <a class="nav-link" routerLink="history" routerLinkActive="active">History</a>
+    </li>
+    <li class="nav-item"*ngIf="loggedIn()" >
+        <a class="nav-link" style="cursor:pointer" (click)=logout()>Logout</a>
+    </li>
+    
+</ul>

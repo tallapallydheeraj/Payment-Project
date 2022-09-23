@@ -1,0 +1,106 @@
+<br>
+
+<div class="container-fluid offset-2">
+  <div class="container offset-2">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+      <div class="card border-info mb-2" style="max-width: 30rem;">
+        <div class="card-header">Name:</div>
+        <div class="card-body">
+          <p class="card-text">{{customer.accountholdername}}</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card border-primary mb-2" style="max-width: 25rem;">
+          <div class="card-header">Customer ID:</div>
+          <div class="card-body">
+            <p class="card-text">{{customer.customerid}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mb-4">
+        <div class="card border-warning mb-2" style="max-width: 25rem;">
+          <div class="card-header">Customer Type :</div>
+          <div class="card-body">
+            <p *ngIf="customer.customertype=='I'" class="card-text">Individual</p>
+            <p *ngIf="customer.customertype=='B'" class="card-text">Bank</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card border-success mb-2" style="max-width: 25rem;">
+          <div class="card-header">Address :</div>
+          <div class="card-body">
+
+            <p class="card-text">{{customer.customeraddress}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card border-light mb-2" style="max-width: 25rem;">
+          <div class="card-header">OverDraft Facility :</div>
+          <div class="card-body">
+
+            <p *ngIf="customer.overdraftflag==1" class="card-text">Yes</p>
+            <p *ngIf="customer.overdraftflag==0" class="card-text">No</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card border-dark mb-2" style="max-width: 25rem;">
+          <div class="card-header">City : </div>
+          <div class="card-body">
+
+            <p class="card-text">{{customer.customercity}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card border-secondary mb-2" style="max-width: 25rem;">
+          <div class="card-header">Bank Name :</div>
+          <div class="card-body">
+
+            <p class="card-text">{{bank.bankname}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card border-warning mb-2" style="max-width: 25rem;">
+          <div class="card-header">BIC :</div>
+          <div class="card-body">
+
+            <p class="card-text">{{bank.bic}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card border-light mb-2" style="max-width: 25rem;">
+          <div class="card-header">Balance :</div>
+          <div class="card-body">
+
+            <p class="card-text">{{customer.clearbalance|currency:"INR"}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
